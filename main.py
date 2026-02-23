@@ -15,6 +15,9 @@ def fetch_five_pages(start_page):
             page.wait_for_load_state("networkidle")
 
             titles = page.locator("span.titleline > a")
+            statistics = page.locator("tr.athing + tr > td.subtext > span.subline")
+            count = titles.count()
+            print(f"Page {page_number} has {count} posts")
             
             for i in range(count):
                 print("-------------------------------------------------------------------")
