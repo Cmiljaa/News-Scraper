@@ -23,6 +23,8 @@ def fetch_five_pages(start_page):
                 print("-------------------------------------------------------------------")
                 print(i + 1)
                 print("-", titles.nth(i).inner_text())
+                print("-", statistics.nth(i).inner_html())
+                print("-", titles.nth(i).get_attribute('href'))
                 
                 
         browser.close()
