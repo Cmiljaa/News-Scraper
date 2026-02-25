@@ -2,12 +2,13 @@ from playwright.sync_api import sync_playwright
 
 BASE_URL = "https://news.ycombinator.com/?p={}"
 
-def fetch_five_pages(start_page):
+def fetch_five_pages():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
+        data = []
 
-        for page_number in range(start_page, start_page + 1):
+        for page_number in range(1, 6):
             url = BASE_URL.format(page_number)
             print(f"Opening: {url}")
 
@@ -31,4 +32,4 @@ def fetch_five_pages(start_page):
 
 
 if __name__ == "__main__":
-    fetch_five_pages(1)
+    fetch_five_pages()
