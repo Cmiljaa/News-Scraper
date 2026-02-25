@@ -17,10 +17,18 @@ def fetch_five_pages():
 
             titles = page.locator("span.titleline > a")
             statistics = page.locator("tr.athing + tr > td.subtext > span.subline")
-            count = titles.count()
-            print(f"Page {page_number} has {count} posts")
+            
+            count = min(titles.count(), statistics.count())
             
             for i in range(count):
+                stat = statistics.nth(i)
+
+                score_locator = stat.locator(".score")
+                score = score_locator.inner_text() if score_locator.count() > 0 else "0 points"
+
+                age = stat.locator(".age a").inner_text()
+
+                comments = stat.locator("a").last.inner_text()
                 print("-------------------------------------------------------------------")
                 print(i + 1)
                 print("-", titles.nth(i).inner_text())
@@ -28,6 +36,10 @@ def fetch_five_pages():
                 print("-", titles.nth(i).get_attribute('href'))
                 
                 
+                print("Score:", score)
+                print("Age:", age)
+                print("Comments:", comments)
+                print("-" * 40)
         browser.close()
 
 
