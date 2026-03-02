@@ -46,10 +46,18 @@ def fetch_five_pages():
                 print("-", titles.nth(i).get_attribute('href'))
                 
                 
-                print("Score:", score)
-                print("Age:", age)
-                print("Comments:", comments)
-                print("-" * 40)
+                post = Post(
+					title=titles.nth(i).inner_text(),
+					href=titles.nth(i).get_attribute('href') or "",
+					score=nu_score,
+					age=extract_number(age),
+					comments=nu_comments,
+					engagement=engagement
+				)
+                print_data(post)
+
+                data.append(post)        
+        print(data)
         browser.close()
 
 
