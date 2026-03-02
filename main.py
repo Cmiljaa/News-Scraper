@@ -60,6 +60,15 @@ def fetch_five_pages():
         print(data)
         browser.close()
 
+def print_data(data_object: Post):
+    print("-" * 50)
+    print(f"Title: {data_object.title}")
+    print(f"Link: {data_object.href}")
+    print(f"Score: {data_object.score}")
+    print(f"Age: {data_object.age}")
+    print(f"Comments: {data_object.comments}")
+    print(f"Score: {data_object.score}")
+    print(f"Engagement: {data_object.engagement}")
 
 if __name__ == "__main__":
     fetch_five_pages()
