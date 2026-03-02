@@ -1,6 +1,16 @@
 from playwright.sync_api import sync_playwright
+import pandas
+from dataclasses import dataclass
+import config
 
-BASE_URL = "https://news.ycombinator.com/?p={}"
+@dataclass
+class Post:
+    title: str
+    href: str
+    score: int
+    age: int
+    comments: int
+    engagement: float
 
 def fetch_five_pages():
     with sync_playwright() as p:
