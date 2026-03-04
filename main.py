@@ -45,6 +45,9 @@ def fetch_five_pages():
                 print("-", statistics.nth(i).inner_html())
                 print("-", titles.nth(i).get_attribute('href'))
                 
+                nu_comments = extract_number(comments)
+                nu_score = extract_number(score)
+                engagement = nu_comments / nu_score if nu_score else 0
                 
                 post = Post(
 					title=titles.nth(i).inner_text(),
@@ -59,6 +62,9 @@ def fetch_five_pages():
                 data.append(post)        
         print(data)
         browser.close()
+        df = pandas.DataFrame(data)
+        df_sorted = df.sort_values(by='engagement')
+        df_sorted.to_csv("hackernews.csv", index=False)
 
 def print_data(data_object: Post):
     print("-" * 50)
