@@ -18,8 +18,8 @@ def fetch_five_pages():
         page = browser.new_page()
         data = []
 
-        for page_number in range(1, 6):
-            url = BASE_URL.format(page_number)
+        for page_number in range(1, 5):
+            url = config.BASE_URL.format(page_number)
             print(f"Opening: {url}")
 
             page.goto(url, timeout=60000)
@@ -39,11 +39,6 @@ def fetch_five_pages():
                 age = stat.locator(".age a").inner_text()
 
                 comments = stat.locator("a").last.inner_text()
-                print("-------------------------------------------------------------------")
-                print(i + 1)
-                print("-", titles.nth(i).inner_text())
-                print("-", statistics.nth(i).inner_html())
-                print("-", titles.nth(i).get_attribute('href'))
                 
                 nu_comments = extract_number(comments)
                 nu_score = extract_number(score)
